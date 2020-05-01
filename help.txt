@@ -1,0 +1,55 @@
+**HELP**
+
+__Aim of the game:__
+
+The aim of Island Hunt is to explore as much of the island as possible.
+
+Get to new parts of the island and explore!
+
+
+__List of commands:__ (prepend a `.`)
+
+```md
+##### Information #####
+- help (h)
+- versions (version, ver, v)
+- tutorial (tut)
+- shop (sh)
+- recipes (r)
+- achievements (ac, a)
+
+##### Stats #####
+- profile (p)
+- cooldown (cd)
+- inventory (inv, i)
+- place (pl)
+- loot
+
+##### Actions #####
+- look (l)
+- walk (w)
+- hunt (hu)
+- move (m)
+X sleep
+- title
+
+##### Rewards #####
+- daily
+- weekly
+
+##### Crafting #####
+- craft
+- break
+- trade
+- sell
+- buy
+
+##### Storyline #####
+X note
+
+##### Contact #####
+- suggest/bug/change/add/request (similar)
+X privatemessage (pm)
+```
+
+Based off the original Island Hunt with a slightly different storyline.

@@ -1,0 +1,4 @@
+add: "add caves"
+add: "add mine"
+add: "your game is too boring"
+add: "a command called 'help'. to ask questions."suggest: "make hours and minutes for the cooldown instead of all seconds"

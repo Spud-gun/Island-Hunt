@@ -1,0 +1,6 @@
+VERSIONS
+
+```
+v0.1: Made saving progress possible.
+v0.0: Island Hunt bot created.
+```

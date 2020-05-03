@@ -1,6 +1,68 @@
-VERSIONS
+__VERSIONS__
 
-```
-v0.1: Made saving progress possible.
-v0.0: Island Hunt bot created.
+```md
+
+### v[0.6] - 3/5/2020
+- Added new achievements.
+- New map emojis: beach, sand wall.
+- Added map emoji variants: beach with cross, sand wall with cross.
+- Added the map.
+- Added new commands: make, map, bigmap.
+- Fixed 3 bugs.
+- New item emojis: starfish.
+
+### v[0.5] - 2/5/2020
+- Added emojis.
+- New emojis: coins, sand, sand grain, large sand grain, huge sand grain, twig, branch, sandfly, biting sandfly, note, tutorial shell.
+- Changed loot tables. Added new loot possibilities for biting sandfly, shell.
+- Achievements now save when obtained.
+- Added new command: ready.
+- Changed emojis for tick, cross. Added random clocks for cooldowns.
+- Changed xp display on profile.
+- Messages are now split into parts if it overflows the 2000 character limit.
+- New action: sleep. Resets cooldowns and gives coins, XP.
+- Added emojis in recipes.
+- Changed sleep cooldown to 6h and move cooldown to 10s.
+- Added all place descriptions and sand walls.
+- Sleep gives more XP when on a bed.
+- Fixed bug with the move command.
+
+### v[0.4] - 1/5/2020
+- Web server hosting made using Flask! https://Island-Hunt--spudgun1.repl.co
+- Added achievement and title system.
+- Added commands: achievements, title
+- Added daily and weekly reward system. Commands: daily, weekly
+- Added secret commands.
+- Added map objects: sand wall, bed.
+- Added new loot: shell, tutorial shell, biting sandfly.
+- Changed cooldown system to days, hours, minutes, seconds.
+- Changed loot tables slightly. Added new loot.
+
+### v[0.3] - 30/4/2020
+- Added loot.
+- List of loot: sand, sand grain, large sand grain, huge sand grain, twig, branch, sandfly.
+- Added loot tables and chances for look, walk, hunt.
+- Added crafting system. Commands: craft, break, trade, buy, sell.
+- Added cooldown system.
+- Suggestion system made. Commands: suggest, bug, change, add, request.
+- Added place descriptions.
+- Moving now works. But it doesn't.
+- Added XP system based on the quality of obtained item(s).
+- Added level system based on squares.
+- View commands: profile, inventory, cooldown, place, recipes, loot.
+
+### v[0.2] - 30/4/2020
+- Made commands: look, walk, hunt. Does nothing.
+- Changed tutorial style entirely. Finished tutorial.
+- Added data file. Contains all data.
+- Added move command.
+
+### v[0.1] - 29/4/2020
+- Made saving progress possible using a text file.
+- Tutorial.
+- A working command system.
+- A help file and command.
+
+### v[0.0] - 28/4/2020
+- Island Hunt bot created.
 ```

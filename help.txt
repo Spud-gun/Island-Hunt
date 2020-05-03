@@ -17,12 +17,15 @@ __List of commands:__ (prepend a `.`)
 - shop (sh)
 - recipes (r)
 - achievements (ac, a)
+- compass (cp)
 
 ##### Stats #####
 - profile (p)
 - cooldown (cd)
+- ready (rd)
 - inventory (inv, i)
 - place (pl)
+- map (mp)
 - loot
 
 ##### Actions #####
@@ -30,14 +33,16 @@ __List of commands:__ (prepend a `.`)
 - walk (w)
 - hunt (hu)
 - move (m)
-X sleep
+- sleep (sl)
 - title
+X pickup (take, pk, tk)
 
 ##### Rewards #####
 - daily
 - weekly
 
 ##### Crafting #####
+- make (mk)
 - craft
 - break
 - trade

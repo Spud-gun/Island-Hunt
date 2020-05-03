@@ -1,76 +1,192 @@
-types = [str, str, int, int, eval, eval, eval, int, eval, eval]
-""" name[0], status[1], xp[2], level[3], cooldowns[4], items[5], position[6] ([x,y,z]), world#[7], unlocks[8], world[9] """
+types = [str, str, int, int, eval, eval, eval, int, eval, eval, eval, eval, eval]
+""" name[0], status[1], xp[2], level[3], cooldowns[4], items[5], position[6] ([x,y,z]), world#[7], unlocks[8], world[9], achievements[10], map[11], combat[12] """
 
 items = {
-    "sand": ["sand", 10],
-    "sandfly": ["animals", 250],
-    "sand grain": ["sand", 50],
-    "large sand grain": ["sand", 1000],
-    "huge sand grain": ["sand", 15000],
-    "enormous sand grain": ["sand", 0],
-    "gigantic sand grain": ["sand", 0],
-    "biting sandfly": ["animals", 2000],
-    "twig": ["wood", 50],
-    "branch": ["wood", 500]
+    "coins": [1, "currency"],
+    "sand": [10, "sand"],
+    "sand grain": [50, "sand"],
+    "large sand grain": [1000, "sand"],
+    "huge sand grain": [15000, "sand"],
+    "enormous sand grain": [300000, "sand"],
+    "gigantic sand grain": [1500000, "sand"],
+    "sandfly": [250, "animals"],
+    "biting sandfly": [2000, "animals"],
+    "starfish": [5000, "animals"],
+    "twig": [100, "wood"],
+    "branch": [1000, "wood"],
+    "shell": [1000, "shell"],
+    "good shell": [10000, "shell"],
+    "tutorial shell": [1500, "shell"],
+    "sandfly wing": [2000, "defense"],
+    "biting sandfly wing": [6000, "defense"],
+    "sandfly shield": [25000, "defense"],
+    "twig knife": [2000, "attack"],
+    "branch knife": [5000, "attack"],
+    "twig sword": [30000, "attack"],
+    "cow": [0,"pending"]
+}
+
+abilities = {
+    "bite": []
 }
 
 crafts = {
-    "craft sand grain": [{"sand grain": 1},
-                         {"sand": 5}],
-    
-    "craft large sand grain": [{"large sand grain": 1},
-                               {"sand grain": 20}],
-    
-    "craft huge sand grain": [{"huge sand grain": 1},
-                              {"large sand grain": 10, "sand grain": 100}],
-    
-    "craft branch": [{"branch": 1},
-                     {"twig": 10}],
-
-    "craft biting sandfly": [{"biting sandfly": 1},
-                             {"sandfly": 8}],
-    
-    "break sand grain": [{"sand": 5},
-                         {"sand grain": 1}],
-    
-    "break large sand grain": [{"sand": 100},
-                               {"large sand grain": 1}],
-    
-    "break huge sand grain": [{"sand": 1500},
-                              {"huge sand grain": 1}],
-
-    "break branch": [{"twig": 10},
-                     {"branch": 1}],
-    
-    "trade twig to sand": [{"sand": 10},
-                            {"twig": 1}],
-
-    "trade sand to twig": [{"twig": 1},
-                            {"sand": 10}],
-
-    "trade sandfly to sand": [{"sand": 25},
-                               {"sandfly": 1}],
-
-    "trade sand to sandfly": [{"sandfly": 1},
-                               {"sand": 25}],
-    
-    "sell sand": [{"coins": 10},
-                  {"sand": 1}],
-    
-    "sell twig": [{"coins": 100},
-                  {"twig": 1}],
-    
-    "sell sand grain": [{"coins": 55},
-                        {"sand grain": 1}],
-    
-    "sell large sand grain": [{"coins": 1150},
-                              {"large sand grain": 1}],
-    
-    "sell huge sand grain": [{"coins": 17500},
-                             {"huge sand grain": 1}]
+    "craft sand grain": [
+        {"sand grain": 1},
+        {"sand": 5}
+    ],
+    "craft large sand grain": [
+        {"large sand grain": 1},           
+        {"sand grain": 20}
+    ],
+    "craft huge sand grain": [
+        {"huge sand grain": 1},
+        {"large sand grain": 10, "sand grain": 100}
+    ],
+    "craft enormous sand grain": [
+        {"enormous sand grain": 1},
+        {"huge sand grain": 10, "large sand grain": 150}
+    ],
+    "craft branch": [
+        {"branch": 1},
+        {"twig": 10}
+    ],
+    "craft sandfly wing": [
+        {"sandfly wing": 1},
+        {"sandfly": 8}
+    ],
+    "craft sandfly shield": [
+        {"sandfly shield": 1},
+        {"sandfly": 100}
+    ],
+    "craft biting sandfly wing": [
+        {"biting sandfly wing": 1, "sand": 100},
+        {"sandfly": 12, "biting sandfly": 1, "sandfly wing": 1}
+    ],
+    "craft twig knife": [
+        {"twig knife": 1},
+        {"twig": 10, "branch": 1}
+    ],
+    "craft branch knife": [
+        {"branch knife": 1},
+        {"branch": 5}
+    ],
+    "craft twig sword": [
+        {"twig sword": 1},
+        {"twig": 250, "branch": 5}
+    ],
+    "break sand grain": [
+        {"sand": 5},
+        {"sand grain": 1}
+    ],
+    "break large sand grain": [
+        {"sand": 100},       
+        {"large sand grain": 1}
+    ],
+    "break huge sand grain": [
+        {"sand": 1500},
+        {"huge sand grain": 1}
+    ],
+    "break enormous sand grain": [
+        {"sand": 30000},
+        {"enormous sand grain": 1}
+    ],
+    "break branch": [
+        {"twig": 10},
+        {"branch": 1}
+    ],
+    "break biting sandfly": [
+        {"sandfly": 7, "sand": 50},
+        {"biting sandfly": 1}
+    ],
+    "trade twig to sand": [
+        {"sand": 10},
+        {"twig": 1}
+    ],
+    "trade sand to twig": [
+        {"twig": 1},
+        {"sand": 10}
+    ],
+    "trade sandfly to sand": [
+        {"sand": 25},
+        {"sandfly": 1}
+    ],
+    "trade sand to sandfly": [
+        {"sandfly": 1},
+        {"sand": 25}
+    ],
+    "trade shell to sand": [
+        {"sand": 100},
+        {"shell": 1}
+    ],
+    "trade tutorial shell to sand": [
+        {"sand": 100},
+        {"tutorial shell": 1}
+    ],
+    "sell sand": [
+        {"coins": 10},
+        {"sand": 1}
+    ],
+    "sell sand grain": [
+        {"coins": 55},
+        {"sand grain": 1}
+    ],
+    "sell large sand grain": [
+        {"coins": 1150},
+        {"large sand grain": 1}
+    ],
+    "sell huge sand grain": [
+        {"coins": 17500},
+        {"huge sand grain": 1}
+    ],
+    "sell sandfly": [
+        {"coins": 250},
+        {"sandfly": 1}
+    ],
+    "sell biting sandfly": [
+        {"coins": 2500},
+        {"huge sand grain": 1}
+    ],
+    "sell twig": [
+        {"coins": 100},
+        {"twig": 1}
+    ],
+    "sell branch": [
+        {"coins": 1250},
+        {"branch": 1}
+    ],
+    "sell shell": [
+        {"coins": 2000},
+        {"shell": 1}
+    ],
+    "sell tutorial shell": [
+        {"coins": 1100},
+        {"tutorial shell": 1}
+    ],
 }
 
-worlds = ["beach hole", "beach", "forest"]
+requirements = {
+    "craft sandfly wing": "15",
+    "craft twig knife": "15",
+    "craft biting sandfly wing": "20",
+    "craft branch knife": "20",
+    "craft sandfly shield": "25",
+    "craft twig sword": "25",
+}
+
+defenses = {
+    "sandfly wing": 1,
+    "biting sandfly wing": 4,
+    "sandfly shield": 16
+}
+
+attacks = {
+    "twig knife": 1,
+    "branch knife": 3,
+    "twig sword": 20
+}
+
+worlds = ["beach hole", "beach", "cave", "forest", "sea"]
 
 place_names = {
     "(0, 0, 0)": "The starting point.",
@@ -78,44 +194,81 @@ place_names = {
     "(0, -1, 0)": "Most of your stuff was located here at first.",
     "(-1, 0, 0)": "The beach, just west of your starting point.",
     "(1, 0, 0)": "The beach, just east of your starting point.",
+    "(-1, -1, 0)": "The beach. A few pieces of dirt lie here and there.",
+    "(-1, -2, 0)": "The beach. The word `cave` is written on the sand along with a northward pointing arrow.",
+    "(1, 1, 0)": "The beach. The sand is slightly lighter-coloured here.",
+    "(0, 2, 0)": "The beach. Yes, the beach.",
+    "(-2, -1, 0)": "The beach. Quite a lot of pieces of dirt is scattered around."
+}
+
+maps = {
+    "(0, 0, 0)": "beach",
+    "(0, 1, 0)": "beach",
+    "(0, -1, 0)": "beach",
+    "(-1, 0, 0)": "beach",
+    "(1, 0, 0)": "beach",
+    "(-1, -1, 0)": "beach2",
+    "(-1, -2, 0)": "beach",
+    "(1, 1, 0)": "beach2",
+    "(0, 2, 0)": "beach",
+    "(-2, -1, 0)": "beach2",
+    "(-1, -3, 0)": "sandwall",
+    "(-2, -2, 0)": "sandwall",
+    "(0, -2, 0)": "sandwall",
+    "(-3, -1, 0)": "sandwall",
+    "(1, -1, 0)": "sandwall",
+    "(-2, 0, 0)": "sandwall",
+    "(2, 0, 0)": "sandwall",
+    "(-1, 1, 0)": "sandwall",
+    "(2, 1, 0)": "sandwall",
+    "(-1, 2, 0)": "sandwall",
+    "(1, 2, 0)": "sandwall",
+    "(-1, 3, 0)": "sandwall",
+    "(0, 3, 0)": "sandwall",
+    "(1, 3, 0)": "sandwall",
 }
 
 cd = {
     "look": 60,
     "walk": 120,
     "hunt": 300,
-    "move": 0,
-    "sleep": 43200,
+    "move": 10,
+    "sleep": 21600,
     "daily": 86400,
     "weekly": 604800
 }
 
 unlock = {}
 
-# things: name: blocking? takeable? command?
+# things: name: blocking? takeable? display?
 
 things = {
-    "door #": [1,0],
-    "brick wall": [1,0],
-    "seed": [0,1],
-    "sapling": [0,0],
-    "young tree": [1,0],
-    "tree": [1,0],
-    "sand wall": [1,0],
-    "strong sand wall": [1,0],
-    "note #": [0,1]
+    "door": [1,0,"A door lies here."],
+    "brick wall": [1,0,"A brick wall stands firmly to the ground."],
+    "seed": [0,1,"A seed is growing here."],
+    "sapling": [0,0,"A sapling is growing here."],
+    "young tree": [1,0,"A young tree grows here."],
+    "tree": [1,0,"A tree."],
+    "sand wall": [1,0,"A sand wall is fixed to the ground."],
+    "strong sand wall": [1,0,"A strong sand wall is firmly fixed into the ground."],
+    "note": [0,1,"A note lies here."],
+    "bed": [0,0,"A bed _lies_ here. You get more XP from `.sleep` when you are here!"],
+    "sandcastle": [0,1,"A nice decorated sandcastle stands in front of you."]
 }
 
 loot = {
     "beach look": {
-        "5x sand grain|One look at the beach and 5 sand grains popped out. Wow!": 500,
-        "2x sandfly|You saw **2** sandflies on the beach. Why not just take _both_ of them, you thought.": 250,
-        "3x sand grain|You looked around and found 3 sand **grains** lying right in front of you.": 150,
-        "20x sand|You looked around and found **20** sand!": 150,
-        "2x sand grain|You looked around and spotted 2 sand **grains**!": 50,
-        "1x sand|You looked around again and a teeny grain of sand caught your attention. Apparently it was to distract you, because...": 100,
+        "1x large sand grain|WOW! A LARGE SAND GRAIN!": 400,
+        "1x shell|A SHELL IS SPOTTED!": 300,
+        "3x sandfly|You saw **3** sandflies on the beach. Why not just take _all_ of them, you thought.": 250,
+        "2x sandfly|You saw **2** sandflies on the beach. Why not just take _both_ of them, you thought.": 120,
+        "5x sand grain|One look at the beach and 5 sand grains popped out. Wow!": 50,
         "1x sandfly|You saw a sandfly on the beach. Why not just take it, you thought.": 50,
-        "8x sand|You looked around and spotted **8** sand!": 10,
+        "20x sand|You looked around and found **20** sand!": 40,
+        "3x sand grain|You looked around and found 3 sand **grains** lying right in front of you.": 25,
+        "2x sand grain|You looked around and spotted 2 sand **grains**!": 15,
+        "1x sand|You looked around again and a teeny grain of sand caught your attention. Apparently it was to distract you, because...": 20,
+        "8x sand|You looked around and spotted **8** sand!": 9,
         "7x sand|You looked around and spotted **7** sand!": 7,
         "1x sand grain|You looked around and spotted a sand grain!": 6,
         "5x sand|You looked around and spotted 5 sand on the beach.": 5,
@@ -124,28 +277,39 @@ loot = {
         "2x sand|You looked around and spotted just 2 sand.": 1
     },
     "beach walk": {
-        "1x branch|Walking around, your foot caught on a branch and you tripped! Fortunately, the branch didn't run away.": 100,
-        "3x twig|Walking around, you found **3** twigs on the beach!": 25,
-        "2x twig|Walking around, both your feet caught on 2 twigs.": 10,
+        "2x branch|NICE! Walking around, both your feet caught on 2 BRANCHES and you tripped!": 500,
+        "2x shell|NICE! Your foot caught on two shells!": 200,
+        "1x large sand grain|WOW! A LARGE SAND GRAIN!": 200,
+        "1x branch|Walking around, your foot caught on a BRANCH and you tripped! WOW!": 150,
+        "1x shell|Walking around, your foot caught on a SHELL! WOW!": 100,
+        "3x twig|Walking around, you found **3** twigs on the beach!": 30,
+        "2x twig|Walking around, both your feet caught on 2 twigs.": 15,
         "1x twig|Walking around, your foot caught on a twig.": 4,
         "7x sand|Walking around, you found nothing much but some sand.": 4,
         "5x sand|Walking around, you found nothing much but some sand.": 3,
-        "1x sand grain|Walking around, you found a sand grain.": 9,
+        "1x sand grain|Walking around, you found a sand grain.": 5,
         "4x sand|Walking around, you found nothing much but some sand.": 2,
         "1x twig|Walking around, you found a twig.": 1
     },
     "beach hunt": {
-        "1x starfish|Wow! You found a _rare_ starfish lying on the beach near the sea.": 500,
-        "1x branch|The hunt was unsuccessful, but you saw a branch on the way, wondering where it came from.": 120,
-        "7x sandfly|Wow! You found a sandfly colony but only managed to hunt down 7 sandflies.": 100,
-        "6x sandfly|Wow! You found a sandfly colony but only managed to hunt down 6 sandflies.": 75,
-        "5x sandfly|Wow! You found a sandfly colony but only managed to hunt down 5 sandflies.": 50,
-        "10x sand grain|The hunt was unsuccessful, but you saw 10 nice sand grains on the way.": 50,
+        "1x starfish|RARE!!! You found a _rare_ starfish lying on the beach near the sea.": 500,
+        "10x sandfly|NICE!!! You found a sandfly colony and hunted down **all** the sandflies!": 200,
+        "3x shell|You didn't hunt anything, but you found **3** SHELLS on the way!": 150,
+        "7x sandfly|Wow! You found a sandfly colony but only managed to hunt down 7 sandflies.": 120,
+        "6x sandfly|Wow! You found a sandfly colony but only managed to hunt down 6 sandflies.": 100,
+        "2x shell|You didn't hunt anything, but you found TWO SHELLS on the way!": 100,
+        "2x biting sandfly|Wow! You found TWO BITING sandflies!": 80,
+        "5x sandfly|Wow! You found a sandfly colony but only managed to hunt down 5 sandflies.": 75,
+        "1x large sand grain|WOW! A LARGE SAND GRAIN!": 50,
+        "1x shell|You didn't hunt anything, but you found a SHELL on the way!": 50,
+        "1x branch|You didn't hunt anything, but you saw a branch on the way, wondering where it came from.": 50,
         "3x sandfly|You found **3** sandflies flying around!": 25,
-        "1x twig|The hunt was unsuccessful, but you saw a twig on the way, wondering where it came from.": 12,
+        "1x biting sandfly|You found a sandfly! It was BITING you!": 20,
+        "1x twig|You didn't hunt anything, but you saw a twig on the way, wondering where it came from.": 15,
+        "10x sand grain|You didn't hunt anything, but you saw 10 nice sand grains on the way.": 10,
         "2x sandfly|You found **2** sandflies!": 8,
-        "5x sand grain|The hunt was unsuccessful, but you saw 5 sand grains on the way.": 5,
-        "5x sand|The hunt was unsuccessful, but you saw 5 sand on the way.": 2,
+        "5x sand grain|You didn't hunt anything, but you saw 5 sand grains on the way.": 4,
+        "10x sand|You didn't hunt anything, but you saw 10 sand on the way.": 2,
         "1x sandfly|You found a sandfly!": 1
     }
 }
@@ -161,6 +325,7 @@ achievements = {
     "Get 10 sand grains": ["sand grain",10,"Sand Grain!"],
     "Get a large sand grain": ["large sand grain",1,"LARGE sand!"],
     "Get a HUGE sand grain": ["huge sand grain",1,"HUGE sand grain!"],
+    "Get 5 huge sand grains": ["huge sand grain",5,"MANY huge sand grains!"],
     "Get a twig": ["twig",1,"Twig!"],
     "Get 30 twigs": ["twig",30,"Crack goes the twig!"],
     "Get 500 twigs": ["twig",500,"Twig collector!"],
@@ -169,18 +334,29 @@ achievements = {
     "Get 250 branches": ["branch",250,"B R A N C H"],
     "Catch 1 sandfly": ["sandfly",1,"Sandflier"],
     "Catch 10 sandflies": ["sandfly",10,"Don't fly away!"],
-    "Catch 100 sandflies": ["sandfly",100,"You can't fly away!"]
+    "Catch 100 sandflies": ["sandfly",100,"You can't fly away!"],
+    "Catch 1 biting sandfly": ["biting sandfly",1,"Bite!"],
+    "Catch 10 biting sandflies": ["biting sandfly",10,"Don't bite me!"],
+    "Get 1 shell": ["shell",1,"Shell!"],
+    "Get 10 shells": ["shell",10,"SHELL!"]
 }
 
 notes = {
     1: """
-```Welcome to the Island Hunt! Collect resources and survive on the Island!
-Wait something's not right with the island... let me find out...```
+    ```Welcome to the Island Hunt! Collect resources and survive on the Island!
+    Wait something's not right with the island... let me find out...```
 
-The note was typewrited and torn off after the last three full stops.
-""",
-    2: """"""
+    The note was typewrited, and torn off after the last three dots...
+    """,
+    2: """
+    ```Just a note:
+    Anybody who reads this, please do NOT go into the deep hole in the beach, there is no way out.
+    I repeat: do NOT go into the deep hole north of here."""
 }
+
+server_ids = [705736619457642567, 705737067732140034]
+
+emojis = {}
 
 # functions
 
@@ -198,7 +374,8 @@ def save(saves):
     open('progress.txt', 'w').close()
     file = open("progress.txt","w")
     for i in saves:
-        file.write(str(i) + "|" + "|".join([str(x) for x in saves[i]]) + "\n")
+        if i:
+            file.write(str(i) + "|" + "|".join([str(x) for x in saves[i]]) + "\n")
     file.close()
 
 def new_cooldowns():
@@ -216,6 +393,23 @@ def new_unlocks():
 
 def new_world():
     return load()["000000000000000000"][9]
+
+def new_achievements():
+    ac = {}
+    for i in achievements:
+        ac[i] = 0
+    return ac
+
+def new_map():
+    return {"(0, 0, 0)": 1}
+
+def get_emojis(servers):
+    global emojis
+    for server in servers:
+        e = server.emojis
+        for i in e:
+            emojis[i.name] = str(i)
+    return emojis
 
 def tutorial_text(num):
     if num == 0:
@@ -242,7 +436,7 @@ def tutorial_text(num):
     if num == 7:
         return "You move 10 metres **west**."
     if num == 8:
-        return "You reached to the ground and picked up a **note 1**!"
+        return "You reached to the ground and picked up a **note**!"
     if num == 9:
         return "Coordinates: (-1, 0, 0)\n\n" + place_names["(-1, 0, 0)"] + "\n\nYou're done with the tutorial! Type `.help` to know more and find out more commands!"
 

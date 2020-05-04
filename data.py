@@ -23,6 +23,10 @@ items = {
     "twig knife": [2000, "attack"],
     "branch knife": [5000, "attack"],
     "twig sword": [30000, "attack"],
+    "common box": [1000, "boxes"],
+    "uncommon box": [1000, "boxes"],
+    "rare box": [1000, "boxes"],
+    "very rare box": [1000, "boxes"],
     "cow": [0,"pending"]
 }
 
@@ -311,7 +315,35 @@ loot = {
         "5x sand grain|You didn't hunt anything, but you saw 5 sand grains on the way.": 4,
         "10x sand|You didn't hunt anything, but you saw 10 sand on the way.": 2,
         "1x sandfly|You found a sandfly!": 1
+    },
+    "beach box": {
+        "1x very rare box|A **VERY RARE** box crashed through the clouds onto the sand...": 1200,
+        "1x rare box|A RARE box dropped from the sky...": 250,
+        "1x uncommon box|An uncommon box dropped from the sky...": 100,
+        "1x common box|A common box dropped from the sky...": 30
+    },
+    "beach common box": {
+        "1x shell|": 150,
+        "1x large sand grain|": 100,
+        "1x branch|": 90,
+        "1x sandfly|": 20,
+        "1x twig|": 9,
+        "1x sand grain|": 3,
+        "1x sand|": 1
+    },
+    "beach uncommon box": {
+        "1x shell|": 150,
+        "1x large sand grain|": 100,
+        "1x branch|": 90,
+        "1x sandfly|": 10,
+        "1x twig|": 3,
+        "1x sand grain|": 2,
+        "1x sand|": 1
     }
+}
+
+lootboxes = {
+    "common box": [5]
 }
 
 achievements = {
@@ -326,6 +358,7 @@ achievements = {
     "Get a large sand grain": ["large sand grain",1,"LARGE sand!"],
     "Get a HUGE sand grain": ["huge sand grain",1,"HUGE sand grain!"],
     "Get 5 huge sand grains": ["huge sand grain",5,"MANY huge sand grains!"],
+    "Get 10 huge sand grains": ["huge sand grain",10,"10 HUGE sand grains!"],
     "Get a twig": ["twig",1,"Twig!"],
     "Get 30 twigs": ["twig",30,"Crack goes the twig!"],
     "Get 500 twigs": ["twig",500,"Twig collector!"],
@@ -338,7 +371,7 @@ achievements = {
     "Catch 1 biting sandfly": ["biting sandfly",1,"Bite!"],
     "Catch 10 biting sandflies": ["biting sandfly",10,"Don't bite me!"],
     "Get 1 shell": ["shell",1,"Shell!"],
-    "Get 10 shells": ["shell",10,"SHELL!"]
+    "Get 5 shells": ["shell",5,"SHELL!"]
 }
 
 notes = {
@@ -351,7 +384,7 @@ notes = {
     2: """
     ```Just a note:
     Anybody who reads this, please do NOT go into the deep hole in the beach, there is no way out.
-    I repeat: do NOT go into the deep hole north of here."""
+    I repeat: do NOT go into the deep hole east of here."""
 }
 
 server_ids = [705736619457642567, 705737067732140034]
@@ -402,6 +435,9 @@ def new_achievements():
 
 def new_map():
     return {"(0, 0, 0)": 1}
+
+def new_combat():
+    return {}
 
 def get_emojis(servers):
     global emojis

@@ -102,6 +102,14 @@ def reset_cd(user_id, s):
 def get_cd(user, s):
     return int(now() - saves[str(user.id)][4][s])
 
+def embed(title, desc, color, fields, footer, thumbnail):
+    embed=discord.Embed(title="title", description="desc", color=0x71ff4d)
+    embed.set_thumbnail(url=thumbnail)
+    for i in fields:
+        embed.add_field(name=i[0], value=i[1], inline=i[2])
+    embed.set_footer(text=footer)
+    await client.bot.say(embed=embed)
+
 
 # /ready
 
@@ -167,11 +175,12 @@ async def on_message(message):
         ##### command handling
 
 
-        # check if it's /me
+        # check if it's me
         
         if str(message.author.id) == ids["dev"]:
-            global saves, data, help_text, version_text
+            global saves, data, help_text, version_text, emojis
             if command == "reload":
+                emojis = data.get_emojis(servers)
                 saves = data.load()
                 importlib.reload(data)
                 help_text = open("help.txt","r").read()
@@ -244,7 +253,7 @@ async def on_message(message):
             if command == "emoji":
                 s = emoji(m[1])
 
-        ### /reset
+        ### reset
 
         if command == "reset" or command == "reeeset":
             s = bold(name + ": reset\n")
@@ -275,7 +284,7 @@ async def on_message(message):
             else:
                 s = "What are you trying to find help for? Type a valid item/command."
 
-        # /tutorial complete
+        # tutorial complete
         
         elif command == "tutorial" or command == "tut":
             if unlocks["tutorial"] == 10:
@@ -299,7 +308,7 @@ async def on_message(message):
                 if not s:
                     s = "No such recipe! Check `.recipes` for a list of all the recipes!"
 
-        # /cooldown
+        # cooldown
         
         elif command == "cooldown" or command == "cd":
             if message.mentions:
@@ -336,7 +345,7 @@ async def on_message(message):
         elif command == "loot":
             s = loot_data(" ".join(m[1:]))
 
-        # /inventory
+        # inventory
         
         elif command == "inventory" or command == "inv" or command == "i":
             if message.mentions:
@@ -346,13 +355,23 @@ async def on_message(message):
                         inv = temp[5]
                         name = temp[0]
                         break
-            s = bold(name + "'s inventory\n")
+            s = bold(name + "'s inventory")
+            t = ""
+            add = ""
+            adding = False
             for i in data.items.keys():
+                if data.items[i][1] != t:
+                    if adding:
+                        s += add
+                    t = data.items[i][1]
+                    add = "\n\n" + underline(t)
+                    adding = False
                 if i in inv:
                     if inv[i] > 0:
-                        s += "\n" + emoji(i) + " " + bold(i) + ": " + str(inv[i])
+                        add += "\n" + emoji(i) + " " + bold(i) + ": " + str(inv[i])
+                        adding = True
 
-        # /profile
+        # profile
 
         elif command == "profile" or command == "prof" or command == "p":
             if message.mentions:
@@ -366,7 +385,7 @@ async def on_message(message):
                         break
             s = bold(name + "'s profile") + "\nTitle: " + title + "\n\nXP: " + str(xp - get_xp(level - 1)) + "/" + str(get_xp(level) - get_xp(level - 1)) + "\nLevel: " + str(level)
 
-        # /place
+        # place
         
         elif command == "place" or command == "pl":
             user_id = str(user.id)
@@ -455,7 +474,7 @@ async def on_message(message):
         elif command == "compass" or command == "cp":
             s = emoji("compass")
 
-        # /achievements
+        # achievements
         
         elif command == "achievements" or command == "ac" or command == "a":
             a = data.achievements
@@ -489,7 +508,7 @@ async def on_message(message):
                 else:
                     s += "\n" + cross() + " - " + i + " " + emoji(a[i][0]) + " - Title: " + mono(a[i][2]) + "(#" + str(num) + ")"
 
-        # /title
+        # title
         
         elif command == "title":
             try:
@@ -520,7 +539,7 @@ async def on_message(message):
             except:
                 s = "What? That's not a valid title number!"
 
-        # /walk
+        # walk
         
         elif command == "walk" or command == "w":
             sav = True
@@ -534,7 +553,7 @@ async def on_message(message):
             else:
                 s += wait_for(data.cd["walk"] - get_cd(user, "walk"))
 
-        # /look
+        # look
         
         elif command == "look" or command == "l":
             sav = True
@@ -548,7 +567,7 @@ async def on_message(message):
             else:
                 s += wait_for(data.cd["look"] - get_cd(user, "look"))
 
-        # /hunt
+        # hunt
         
         elif command == "hunt" or command == "h":
             sav = True
@@ -580,11 +599,11 @@ async def on_message(message):
                 else:
                     s += "You slept for a while on the sand and felt recharged!\n"
                 s += "The cooldowns for look, walk and hunt are reset!"
-                got["coins"] = world_num * random.randint(25, 50) * 10
+                got["coins"] = world_num ** 2 * random.randint(25, 50) * 10
                 if bed:
-                    got["xp"] = world_num * random.randint(75, 125) * 10
+                    got["xp"] = world_num ** 2 * random.randint(75, 125) * 10
                 else:
-                    got["xp"] = world_num * random.randint(50, 100) * 10
+                    got["xp"] = world_num ** 2 * random.randint(50, 100) * 10
                 reset_cd(user_id, "look")
                 reset_cd(user_id, "walk")
                 reset_cd(user_id, "hunt")
@@ -598,8 +617,8 @@ async def on_message(message):
             s = bold(name + ": daily\n")
             if get_cd(user, "daily") > data.cd["daily"]:
                 set_cd(user, "daily")
-                got["coins"] = world_num * random.randint(75, 125) * 10
-                got["xp"] = world_num * random.randint(25, 75) * 10
+                got["coins"] = world_num ** 2 * random.randint(75, 125) * 10
+                got["xp"] = world_num ** 2 * random.randint(25, 75) * 10
             else:
                 s += wait_for(data.cd["daily"] - get_cd(user, "daily"))
 
@@ -610,8 +629,8 @@ async def on_message(message):
             s = bold(name + ": weekly\n")
             if get_cd(user, "weekly") > data.cd["weekly"]:
                 set_cd(user, "weekly")
-                got["coins"] = world_num * random.randint(200, 500) * 10
-                got["xp"] = world_num * random.randint(150, 300) * 10
+                got["coins"] = world_num ** 2 * random.randint(200, 500) * 10
+                got["xp"] = world_num ** 2 * random.randint(150, 300) * 10
                 s += "All your cooldowns except daily are reset!"
                 reset_cd(user, "look")
                 reset_cd(user, "walk")

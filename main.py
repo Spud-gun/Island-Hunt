@@ -1517,4 +1517,4 @@ def tutorial(m, unlocks, inv, world):
 
 # /run
 webserver.keep()
-client.run(os.getenv("SECRET_TOKEN"))
+client.run(os.getenv("SECRET_TOKEN_1"))

@@ -1,11 +1,30 @@
-__VERSIONS__
+### v0.14 - 9/5/2020 |
+- Added help keywords! See all using the command: help keywords
+- Added new emojis: biting sandfly wing, sandfly shield, wooden sword.
 
-```md
+### v0.13 - 8/5/2020 |
+- Added equipment: sand dagger.
+- Added new emojis: equipment bag, twig knife, sandfly wing, branch knife, sand dagger, twig sword.
+- Added stats for all equipment. Equipment can be sold.
+- After crafting a equipment bag, fighting is unlocked! (not made yet)
 
-### v[0.7] - 4/5/2020
+### v0.12 - 7/5/2020 |
+- Added equipment: equipment bag, wooden shield, twig sword, branch knife.
+- Made selling work for all items and removed sell from recipes. (You could sell coins!)
+- Rich embedded place and 'got' notifications.
+
+### v0.11 - 6/5/2020 |
+- Added new emojis: level, blank (for emojis that don't currently exist)
+- Added crafting requirements.
+- Added equipment: sandfly wing, biting sandfly wing, twig knife, sandfly shield. (all uncraftable)
+
+### v0.10 - 4/5/2020 |
 - Changed inventory layout.
+- Rich embedded help, versions, cooldowns, ready, inventory, profile.
+- Added new emojis: xp, 3 variants of up.
+- Added map emojis: empty cross (you are here).
 
-### v[0.6] - 3/5/2020
+### v0.9 - 3/5/2020 |
 - Added new achievements.
 - New map emojis: beach, sand wall.
 - Added map emoji variants: beach with cross, sand wall with cross.
@@ -14,7 +33,7 @@ __VERSIONS__
 - Fixed 3 bugs.
 - New item emojis: starfish.
 
-### v[0.5] - 2/5/2020
+### v0.8 - 2/5/2020 |
 - Added emojis.
 - New emojis: coins, sand, sand grain, large sand grain, huge sand grain, twig, branch, sandfly, biting sandfly, note, tutorial shell.
 - Changed loot tables. Added new loot possibilities for biting sandfly, shell.
@@ -22,6 +41,8 @@ __VERSIONS__
 - Added new command: ready.
 - Changed emojis for tick, cross. Added random clocks for cooldowns.
 - Changed xp display on profile.
+
+### v0.7 - 2/5/2020 |
 - Messages are now split into parts if it overflows the 2000 character limit.
 - New action: sleep. Resets cooldowns and gives coins, XP.
 - Added emojis in recipes.
@@ -30,23 +51,20 @@ __VERSIONS__
 - Sleep gives more XP when on a bed.
 - Fixed bug with the move command.
 
-### v[0.4] - 1/5/2020
+### v0.6 - 1/5/2020 |
 - Web server hosting made using Flask! https://Island-Hunt--spudgun1.repl.co
 - Added achievement and title system.
 - Added commands: achievements, title
 - Added daily and weekly reward system. Commands: daily, weekly
 - Added secret commands.
+
+### v0.5 - 1/5/2020 |
 - Added map objects: sand wall, bed.
 - Added new loot: shell, tutorial shell, biting sandfly.
 - Changed cooldown system to days, hours, minutes, seconds.
 - Changed loot tables slightly. Added new loot.
 
-### v[0.3] - 30/4/2020
-- Added loot.
-- List of loot: sand, sand grain, large sand grain, huge sand grain, twig, branch, sandfly.
-- Added loot tables and chances for look, walk, hunt.
-- Added crafting system. Commands: craft, break, trade, buy, sell.
-- Added cooldown system.
+### v0.4 - 30/4/2020 |
 - Suggestion system made. Commands: suggest, bug, change, add, request.
 - Added place descriptions.
 - Moving now works. But it doesn't.
@@ -54,18 +72,24 @@ __VERSIONS__
 - Added level system based on squares.
 - View commands: profile, inventory, cooldown, place, recipes, loot.
 
-### v[0.2] - 30/4/2020
+### v0.3 - 30/4/2020 |
+- Added loot.
+- List of loot: sand, sand grain, large sand grain, huge sand grain, twig, branch, sandfly.
+- Added loot tables and chances for look, walk, hunt.
+- Added crafting system. Commands: craft, break, trade, buy, sell.
+- Added cooldown system.
+
+### v0.2 - 30/4/2020 |
 - Made commands: look, walk, hunt. Does nothing.
 - Changed tutorial style entirely. Finished tutorial.
 - Added data file. Contains all data.
 - Added move command.
 
-### v[0.1] - 29/4/2020
+### v0.1 - 29/4/2020 |
 - Made saving progress possible using a text file.
 - Tutorial.
 - A working command system.
 - A help file and command.
 
-### v[0.0] - 28/4/2020
+### v0.0 - 28/4/2020 |
 - Island Hunt bot created.
-```

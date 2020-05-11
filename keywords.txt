@@ -1,0 +1,152 @@
+### help
+The help command allows you to get help on anything related to this game! (hopefully)
+
+### commands/command
+The command 'command' displays all the commands in the game! (pending)
+
+### items/item
+Collect items from look, walk and hunt! They are shown in your inventory.
+
+### versions/version/ver
+This command displays all the versions up to now.
+
+### xp/XP
+XP stands for 'eXperience Points'. Look, walk and hunt to find items to gain XP!
+The better the item you get, the more XP is earned.
+Sleep, daily and weekly also gives free XP.
+
+### level
+You gain a level when you get enough XP! Use the command `.profile` to check your level progress.
+
+### profile
+Your profile consists of your level and XP. Your _title_ will appear at the top of your profile. Earn _achevements_ to unlock titles!
+
+### inventory/inv
+The items you get will appear in your inventory! They are sorted by type.
+
+### crafting/craft
+Use this command to craft other items using smaller items.
+
+### trading/trade
+This command is for exchanging items with the same value for each other.
+
+### shop
+NOT DONE YET
+
+### fight
+NOT DONE YET
+
+### heal
+The command `.heal` allows you to heal up to 20% of your max health!
+
+### pickup/take
+NOT DONE YET
+
+### boxes/box
+Boxes have a random chance of falling from the sky,
+
+### look
+This command allows you to look around, earning some items!
+It has a higher chance of giving sand items.
+
+### walk
+This command allows you to walk around, earning some items!
+It has a higher chance of giving wood items.
+
+### hunt
+This command allows you to hunt for animals!
+There is a higher chance of giving animals.
+However, if you fail to hunt any animal, you could still get good items!
+
+### sleep
+This command resets your look, walk and hunt cooldowns and gives a lot of XP and some coins!
+If you are on a bed, sleep gives a bit more XP! (around 250 XP more)
+
+### coins/coin
+Coins can be obtained by selling items using the sell command.
+You also earn coins when you collect your daily and weekly rewards, or by sleeping.
+Use coins in the shop using the buy command! (NOT DONE YET)
+
+### sand
+Sand is the basic resource in this game. Things could be traded to sand.
+Sand is used to craft many types of sand grains and some equipment.
+
+### sand grain
+Sand are commonly found on the beach. It also can be crafted using sand.
+
+### large sand grain
+Large sand grains are very rarely found on the beach. They also can be crafted using sand grains.
+
+### enormous sand grain
+Enormous sand grains need a lot of resources to craft. They cannot be found on the beach.
+
+### wood
+Wood is an important resource and it is used to craft equipment.
+
+### twig
+Twigs are most commonly found when walking and can be broken to make wood.
+
+### branch
+Branches are much bigger twigs! They are most commonly found when walking.
+
+### animals
+Animals are most commonly found while hunting.
+
+### sandfly
+This is the most common animal found on the beach. It is most commonly found from hunting.
+
+### biting sandfly
+This rare form of sandfly cannot be crafted and only can be broken into many sandflies and some sand. 
+It can be only rarely found from hunting.
+
+### starfish
+Starfish are VERY rare and can only be caught from hunting!
+
+### shell
+Shells are rare and could be found on the beach. They are most commonly found when walking.
+
+### tutorial shell
+A tutorial shell is awarded on completion of the starting tutorial!
+If you don't have one yet, type `.tutorial`!
+
+### equipment
+
+### equipment bag
+
+### 
+
+### common box
+Common boxes are the most common type of boxes in the game. They can also be used to craft uncommon boxes. 
+Type `.loot beach common box` to see a list of common box drops and their chances! 
+
+### uncommon box
+Uncommon boxes are the 2nd most common type of boxes in the game after common boxes. They can also be used to craft rare boxes. 
+Type `.loot beach uncommon box` to see a list of uncommon box drops and their chances! 
+
+### rare box
+Rare boxes are boxes that drop rarely in the game. They can also be used to craft very rare boxes. 
+Type `.loot beach rare box` to see a list of rare box drops and their chances! 
+
+### very rare box
+VERY rare boxes are boxes that drop VERY rarely in the game. They are the best type of boxes! They drop VERY good loot. 
+Type `.loot beach very rare box` to see a list of very rare box drops and their chances!
+
+### enemies
+In `.fight`?
+
+### baby ant
+
+### ant
+
+### achievement/achievements/ach/ac
+Use this command `.ac` or `.achievement` to see a list of achievements for you to aim for! Achievements can help you to unlock titles.
+
+### title
+Choose your title with `.title (number)` for it to appear in your profile! Check `.ac` for a list of titles.
+
+### daily
+This reward gives a large amount of coins and XP.
+
+### weekly
+This reward resets the commands look, walk, hunt, fight, heal and sleep!
+It also gives a lot of coins and XP!

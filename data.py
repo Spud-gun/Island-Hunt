@@ -1,37 +1,42 @@
+import random
+
 types = [str, str, int, int, eval, eval, eval, int, eval, eval, eval, eval, eval]
 """ name[0], status[1], xp[2], level[3], cooldowns[4], items[5], position[6] ([x,y,z]), world#[7], unlocks[8], world[9], achievements[10], map[11], combat[12] """
 
 items = {
-    "coins": [1, "currency"],
-    "sand": [10, "sand"],
-    "sand grain": [50, "sand"],
-    "large sand grain": [1000, "sand"],
-    "huge sand grain": [15000, "sand"],
-    "enormous sand grain": [300000, "sand"],
-    "gigantic sand grain": [1500000, "sand"],
-    "sandfly": [250, "animals"],
-    "biting sandfly": [2000, "animals"],
-    "starfish": [5000, "animals"],
-    "twig": [100, "wood"],
-    "branch": [1000, "wood"],
-    "shell": [1000, "shell"],
-    "good shell": [10000, "shell"],
-    "tutorial shell": [1500, "shell"],
-    "sandfly wing": [2000, "defense"],
-    "biting sandfly wing": [6000, "defense"],
-    "sandfly shield": [25000, "defense"],
-    "twig knife": [2000, "attack"],
-    "branch knife": [5000, "attack"],
-    "twig sword": [30000, "attack"],
-    "common box": [1000, "boxes"],
-    "uncommon box": [1000, "boxes"],
-    "rare box": [1000, "boxes"],
-    "very rare box": [1000, "boxes"],
+    "coins": [1, "currency", 1],
+    "sand": [10, "sand", 10],
+    "sand grain": [50, "sand", 55],
+    "large sand grain": [1000, "sand", 1150],
+    "huge sand grain": [15000, "sand", 17500],
+    "enormous sand grain": [300000, "sand", 360000],
+    "gigantic sand grain": [1500000, "sand", 2000000],
+    "sandfly": [250, "animals", 250],
+    "biting sandfly": [2000, "animals", 2500],
+    "starfish": [5000, "animals", 10000],
+    "wood": [20, "wood", 20],
+    "twig": [100, "wood", 110],
+    "branch": [1000, "wood", 1250],
+    "shell": [1000, "shell", 2000],
+    "good shell": [10000, "shell", 20000],
+    "tutorial shell": [1500, "shell", 1500],
+    "equipment bag": [1000, "combat", 1000],
+    "sandfly wing": [2000, "combat", 2000],
+    "biting sandfly wing": [7000, "combat", 7000],
+    "wooden shield": [10000, "combat", 10000],
+    "sandfly shield": [25000, "combat", 25000],
+    "twig knife": [1200, "combat", 1200],
+    "branch knife": [3200, "combat", 3200],
+    "sand dagger": [9500, "combat", 9500],
+    "twig sword": [18000, "combat", 30000],
+    "common box": [0, "boxes", 200],
+    "uncommon box": [0, "boxes", 500],
+    "rare box": [0, "boxes", 1500],
+    "very rare box": [0, "boxes", 5000],
+    "note": [0, "storyline", 0],
+    "xp": [0, "XP", 1],
+    "level": [0, "Level", 1],
     "cow": [0,"pending"]
-}
-
-abilities = {
-    "bite": []
 }
 
 crafts = {
@@ -51,33 +56,70 @@ crafts = {
         {"enormous sand grain": 1},
         {"huge sand grain": 10, "large sand grain": 150}
     ],
+    "craft twig": [
+        {"twig": 1},
+        {"wood": 5}
+    ],
     "craft branch": [
         {"branch": 1},
         {"twig": 10}
     ],
+    "craft uncommon box": [
+        {"uncommon box": 1},
+        {"common box": 2, "sand": 1}
+    ],
+    "craft rare box": [
+        {"rare box": 1},
+        {"uncommon box": 2, "sand": 10}
+    ],
+    "craft very rare box": [
+        {"very rare box": 1},
+        {"rare box": 3, "sand": 100}
+    ],
+    "craft equipment bag": [
+        {"equipment bag": 1},
+        {"wood": 50, "sand": 100},
+        {"common box": 1, "level": 10}
+    ],
     "craft sandfly wing": [
         {"sandfly wing": 1},
-        {"sandfly": 8}
+        {"sandfly": 8},
+        {"equipment bag": 1, "level": 15}
+    ],
+    "craft wooden shield": [
+        {"wooden shield": 1},
+        {"wood": 500},
+        {"equipment bag": 1, "level": 20}
     ],
     "craft sandfly shield": [
         {"sandfly shield": 1},
-        {"sandfly": 100}
+        {"sandfly": 100},
+        {"equipment bag": 1, "level": 25}
     ],
     "craft biting sandfly wing": [
         {"biting sandfly wing": 1, "sand": 100},
-        {"sandfly": 12, "biting sandfly": 1, "sandfly wing": 1}
+        {"sandfly": 12, "biting sandfly": 1, "sandfly wing": 1},
+        {"equipment bag": 1, "level": 20}
     ],
     "craft twig knife": [
         {"twig knife": 1},
-        {"twig": 10, "branch": 1}
+        {"twig": 12},
+        {"equipment bag": 1, "level": 10}
     ],
     "craft branch knife": [
         {"branch knife": 1},
-        {"branch": 5}
+        {"branch": 2, "twig knife": 1},
+        {"equipment bag": 1, "level": 15}
+    ],
+    "craft sand dagger": [
+        {"sand dagger": 1},
+        {"sand": 650, "wood": 150},
+        {"equipment bag": 1, "level": 20}
     ],
     "craft twig sword": [
         {"twig sword": 1},
-        {"twig": 250, "branch": 5}
+        {"twig": 150, "branch": 3},
+        {"equipment bag": 1, "level": 25}
     ],
     "break sand grain": [
         {"sand": 5},
@@ -95,6 +137,10 @@ crafts = {
         {"sand": 30000},
         {"enormous sand grain": 1}
     ],
+    "break twig": [
+        {"wood": 5},
+        {"twig": 1}
+    ],
     "break branch": [
         {"twig": 10},
         {"branch": 1}
@@ -102,6 +148,14 @@ crafts = {
     "break biting sandfly": [
         {"sandfly": 7, "sand": 50},
         {"biting sandfly": 1}
+    ],
+    "trade wood to sand": [
+        {"sand": 2},
+        {"wood": 1}
+    ],
+    "trade sand to wood": [
+        {"wood": 1},
+        {"sand": 2}
     ],
     "trade twig to sand": [
         {"sand": 10},
@@ -127,67 +181,63 @@ crafts = {
         {"sand": 100},
         {"tutorial shell": 1}
     ],
-    "sell sand": [
-        {"coins": 10},
-        {"sand": 1}
-    ],
-    "sell sand grain": [
-        {"coins": 55},
-        {"sand grain": 1}
-    ],
-    "sell large sand grain": [
-        {"coins": 1150},
-        {"large sand grain": 1}
-    ],
-    "sell huge sand grain": [
-        {"coins": 17500},
-        {"huge sand grain": 1}
-    ],
-    "sell sandfly": [
-        {"coins": 250},
-        {"sandfly": 1}
-    ],
-    "sell biting sandfly": [
-        {"coins": 2500},
-        {"huge sand grain": 1}
-    ],
-    "sell twig": [
-        {"coins": 100},
-        {"twig": 1}
-    ],
-    "sell branch": [
-        {"coins": 1250},
-        {"branch": 1}
-    ],
-    "sell shell": [
-        {"coins": 2000},
-        {"shell": 1}
-    ],
-    "sell tutorial shell": [
-        {"coins": 1100},
-        {"tutorial shell": 1}
-    ],
 }
 
-requirements = {
-    "craft sandfly wing": "15",
-    "craft twig knife": "15",
-    "craft biting sandfly wing": "20",
-    "craft branch knife": "20",
-    "craft sandfly shield": "25",
-    "craft twig sword": "25",
+equipment = { # +[atk, def, health]
+    "sandfly wing": [0, 1, 0],
+    "biting sandfly wing": [0, 5, 0],
+    "wooden shield": [0, 6, 0],
+    "sandfly shield": [0, 16, 0],
+    "twig knife": [1, 0, 0],
+    "branch knife": [3, 0, 0],
+    "sand dagger": [10, 0, 0],
+    "twig sword": [20, 0, 0],
 }
 
-defenses = {
-    "sandfly wing": 1,
-    "biting sandfly wing": 4,
-    "sandfly shield": 16
+hits = {
+    "nothing": {"damage": 0},
+    "basic": {"damage": 1},
+    "basic poison": {"poison damage": 1},
+    "basic lightning": {"lightning damage": 1},
+    "basic stun": {"stun": 0},
+    "basic stun hit": {"stun damage": 1},
+    "basic heal": {"heal": 0.1},
+    "full heal": {"heal": 1},
+    "ant hit": {"damage": 1},
+    "ant sting": {"poison damage": 1}
 }
 
-attacks = {
-    "twig knife": 1,
-    "branch knife": 3,
-    "twig sword": 20
+abilities = {
+    "nothing": {
+        "hits": [["nothing", 100, 1]],
+        "number": 1000
+    },
+    "stunned": {
+        "hits": [["nothing", 100, 1]],
+        "number": 1000
+    },
+    "hit": {
+        "hits": [["basic", 100, 1]],
+        "number": 1000
+    },
+    "bite": {
+        "hits": [["basic", 70, 2]],
+        "number": 1000
+    },
+    "baby ant hit": {
+        "hits": [["basic", 25, 1]],
+        "number": 1000
+    },
+    "ant hit": {
+        "hits": [["basic", 50, 1]],
+        "number": 1000
+    },
+}
+
+enemies = {
+    # name: [attack, defense, health, abilities]
+    "baby ant": {"attack": 1, "defense": 1, "health": 5, "abilities": ["baby ant hit"]},
+    "ant": {"attack": 1, "defense": 1, "health": 10, "abilities": ["ant hit"]},
 }
 
 worlds = ["beach hole", "beach", "cave", "forest", "sea"]
@@ -236,6 +286,8 @@ cd = {
     "look": 60,
     "walk": 120,
     "hunt": 300,
+    "fight": 600,
+    "heal": 150,
     "move": 10,
     "sleep": 21600,
     "daily": 86400,
@@ -316,11 +368,16 @@ loot = {
         "10x sand|You didn't hunt anything, but you saw 10 sand on the way.": 2,
         "1x sandfly|You found a sandfly!": 1
     },
+    "beach fight": {
+        "1x baby ant|A baby ant crawls towards you as if it wants to eat you.": 2,
+        "1x ant|An ant approaches you on all 6 legs.": 1,
+    },
     "beach box": {
         "1x very rare box|A **VERY RARE** box crashed through the clouds onto the sand...": 1200,
         "1x rare box|A RARE box dropped from the sky...": 250,
         "1x uncommon box|An uncommon box dropped from the sky...": 100,
-        "1x common box|A common box dropped from the sky...": 30
+        "1x common box|A common box dropped from the sky...": 30,
+        "0x common box|": 1
     },
     "beach common box": {
         "1x shell|": 150,
@@ -332,18 +389,44 @@ loot = {
         "1x sand|": 1
     },
     "beach uncommon box": {
-        "1x shell|": 150,
-        "1x large sand grain|": 100,
-        "1x branch|": 90,
+        "1x biting sandfly|": 150,
+        "1x shell|": 70,
+        "1x large sand grain|": 50,
+        "1x branch|": 40,
         "1x sandfly|": 10,
         "1x twig|": 3,
         "1x sand grain|": 2,
         "1x sand|": 1
+    },
+    "beach rare box": {
+        "1x huge sand grain|": 300,
+        "1x biting sandfly|": 50,
+        "1x shell|": 30,
+        "1x large sand grain|": 20,
+        "1x branch|": 15,
+        "1x sandfly|": 5,
+        "1x twig|": 2,
+        "1x sand grain|": 2,
+        "1x sand|": 1
+    },
+    "beach very rare box": {
+        "1x starfish|": 250,
+        "1x huge sand grain|": 100,
+        "1x biting sandfly|": 15,
+        "1x shell|": 10,
+        "1x large sand grain|": 6,
+        "1x branch|": 5,
+        "1x sandfly|": 2,
+        "1x twig|": 2,
+        "1x sand grain|": 2,
     }
 }
 
 lootboxes = {
-    "common box": [5]
+    "common box": [5],
+    "uncommon box": [10],
+    "rare box": [15],
+    "very rare box": [20]
 }
 
 achievements = {
@@ -370,8 +453,12 @@ achievements = {
     "Catch 100 sandflies": ["sandfly",100,"You can't fly away!"],
     "Catch 1 biting sandfly": ["biting sandfly",1,"Bite!"],
     "Catch 10 biting sandflies": ["biting sandfly",10,"Don't bite me!"],
-    "Get 1 shell": ["shell",1,"Shell!"],
-    "Get 5 shells": ["shell",5,"SHELL!"]
+    "Get a shell": ["shell",1,"Shell!"],
+    "Get 5 shells": ["shell",5,"SHELL!"],
+    "Get a common box": ["common box",1,"Box!"],
+    "Get an uncommon box": ["uncommon box",1,"Boxx!"],
+    "Get a rare box": ["rare box",1,"Boxxx!"],
+    "Get an very rare box": ["very rare box",1,"BOX!"],
 }
 
 notes = {
@@ -387,9 +474,171 @@ notes = {
     I repeat: do NOT go into the deep hole east of here."""
 }
 
-server_ids = [705736619457642567, 705737067732140034]
+island_picture = "https://i.ibb.co/8m8fxsm/island.png"
+
+server_ids = [705736619457642567, 705737067732140034, 706097681977835582]
 
 emojis = {}
+
+# classes
+
+class Enemy:
+    def __init__(self, name, **kwargs):
+        self.name = name
+        self.stats = {}
+        self.stats = enemies[name]
+        self.abilities = enemies[name]["abilities"]
+        self.effects = {
+            "health": self.stats["health"],
+            "poison": 0,
+            "combat": 1,
+            "stunned": 0,
+            "dead": 0,
+        }
+        self.ability_nums = {}
+        for i in self.abilities:
+            self.ability_nums[i] = abilities[i]["number"]
+
+        # keyword modifiers
+
+        for i,j in kwargs:
+            if i in self.stats:
+                if i == "abilities":
+                    self.abilities[i].extend(j)
+                    self.stats["abilities"].extend(j)
+                else:
+                    self.stats[i] *= j
+    
+    # just some getter functions
+    
+    def attack(self):
+        return self.stats["attack"]
+    def defense(self):
+        return self.stats["defense"]
+    def max_health(self):
+        return self.stats["health"]
+    def health(self):
+        return self.effects["health"]
+    def poison(self):
+        return self.effects["poison"]
+    def effect(self, eff):
+        return self.effects[eff]
+    def die(self):
+        if self.health() <= 0:
+            self.effects["dead"] = 1
+            return True
+        else:
+            self.effects["dead"] = 0
+            return False
+    
+    def do_poison(self):
+        if self.poison() > 0:
+            self.effects["health"] -= self.effects["poison"]
+            self.effects["poison"] //= 2
+            return True
+        else:
+            return False
+    
+    def remove_stun(self):
+        if self.effects["stunned"] > 0:
+            self.effects["stunned"] -= 1
+    
+    def use_ability(self, ability):
+        self.ability_nums[ability] -= 1
+    
+    def check_ability(self, ability):
+        return self.ability_nums[ability] > 0
+    
+    def heal(self, ability):
+        if ability:
+            a = abilities[ability]
+            for i in a:
+                if random.randint(1, 100) <= i[1]:
+                    heal_name = i[0]
+                    heal_mult = i[2]
+                    break
+            h = hits[heal_name]
+            for i in h:
+                if "heal" in h:
+                    heal = h[i] * heal_mult * self.max_health()
+                    if "poison" in h:
+                        self.effects["poison"] -= heal
+                    else:
+                        self.effects["health"] += heal
+    
+    def hit(self, ability, opponent):
+        if ability:
+            a = abilities[ability]
+            for i in a:
+                if random.randint(1, 100) <= i[1]:
+                    hit_name = i[0]
+                    hit_mult = i[2]
+                    break
+            h = hits[hit_name]
+            for i in h:
+                if "damage" in h:
+                    damage = h[i] * hit_mult * opponent.damage()
+                    if "lightning" not in h:
+                        damage -= self.stats["defense"]
+                    if damage < 0:
+                        damage = 0
+                    if "poison" in h:
+                        self.effects["poison"] += damage
+                    else:
+                        self.effects["health"] -= damage
+    
+    def turn(self, ability, opponent):
+        self.hit(self, ability, opponent)
+        self.do_poison()
+        
+        if self.die():
+            return ""
+        else:
+            a = []
+            for i in self.abilities:
+                if self.check_ability(i):
+                    a.append(i)
+            if a:
+                if self.effects["stunned"] > 0:
+                    return "stunned"
+                else:
+                    a = a[random.randint(0, len(a) - 1)]
+                    self.use_ability(a)
+                    return a[random.randint(0, len(a) - 1)]
+            else:
+                return "nothing"
+
+class You(Enemy):
+
+    # overriding
+
+    def __init__(self, combat):
+        self.stats = combat
+        self.abilities = combat["abilities"]
+        self.effects = {
+            "health": self.stats["health"],
+            "poison": 0,
+            "combat": 1,
+            "stunned": 0,
+            "dead": 0,
+        }
+        self.ability_nums = {}
+        for i in self.abilities:
+            self.ability_nums[i] = abilities[i]["number"]
+    
+    # more overriding
+    
+    def turn(self, ability, opponent):
+        self.hit(self, ability, opponent)
+        if self.die():
+            return "lose"
+        else:
+            if ability:
+                return "next"
+            else:
+                return "win"
+
+
 
 # functions
 
@@ -438,6 +687,25 @@ def new_map():
 
 def new_combat():
     return {}
+
+def init_combat():
+    return {
+        "init": 1,
+        "attack": 0,
+        "defence": 0,
+        "health": 20,
+        "abilities": {"hit": 1},
+        "kills": 0,
+        "deaths": 0,
+        "animals": {},
+        "effects": {
+            "health": 20,
+            "poison": 0,
+            "combat": 0,
+            "stunned": 0,
+            "dead": 0,
+        },
+    }
 
 def get_emojis(servers):
     global emojis

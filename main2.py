@@ -1,4 +1,4 @@
-import data, webserver, discord, datetime, asyncio, random, importlib, os
+import data, webserver, discord, datetime, asyncio, random, importlib
 
 client = discord.Client(activity=discord.Game(name="Island Hunt"))
 
@@ -1517,4 +1517,4 @@ def tutorial(m, unlocks, inv, world):
 
 # /run
 webserver.keep()
-client.run(os.getenv("SECRET_TOKEN"))
+client.run("NzA5MzI2Nzc1MDcwNjIxNzA2.XrkUpA.7XmQUaGoRsV5I_n9LdnBboW__ds")

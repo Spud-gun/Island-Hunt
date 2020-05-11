@@ -1,17 +1,16 @@
-**HELP**
-
 __Aim of the game:__
 
 The aim of Island Hunt is to explore as much of the island as possible.
-
 Get to new parts of the island and explore!
 
 
 __List of commands:__ (prepend a `.`)
 
+For more info type `.help [command/item]`
+
 ```md
 ##### Information #####
-- help (h)
+- help (hl)
 - versions (version, ver, v)
 - tutorial (tut)
 - shop (sh)
@@ -43,11 +42,11 @@ X pickup (take, pk, tk)
 
 ##### Crafting #####
 - make (mk)
-- craft
-- break
-- trade
-- sell
-- buy
+- craft (cr)
+- break (br)
+- trade (tr)
+- sell (sl)
+- buy (bu)
 
 ##### Storyline #####
 X note

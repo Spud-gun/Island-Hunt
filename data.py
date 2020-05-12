@@ -671,6 +671,8 @@ def new_unlocks():
     unlocks = {}
     for i in unlock:
         unlocks[i] = 0
+        if i == "tutorial":
+            unlocks[i] = 10
     return unlocks
 
 def new_world():

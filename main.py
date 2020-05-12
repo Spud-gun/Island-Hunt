@@ -1,6 +1,6 @@
 import data, webserver, discord, datetime, asyncio, random, importlib, os
 
-client = discord.Client(activity=discord.Game(name="Island Hunt"))
+client = discord.Client(activity=discord.Game(name="Island Hunt TEST"))
 
 # game data
 types = data.types
@@ -1517,4 +1517,4 @@ def tutorial(m, unlocks, inv, world):
 
 # /run
 webserver.keep()
-client.run(os.getenv("SECRET_TOKEN_1"))
+client.run(os.getenv("SECRET_TOKEN_2"))

@@ -29,7 +29,7 @@ def new_profile(user):
     if user.id in saves:
         return []
     else:
-        return [user.name, "No status", 0, 0, data.new_cooldowns(), {}, [0,0,0], 1, data.new_unlocks(), data.new_world(), data.new_achievements(), data.new_map(), {}]
+        return [user.name, "No status", 0, 1, data.new_cooldowns(), {}, [0,0,0], 1, data.new_unlocks(), data.new_world(), data.new_achievements(), data.new_map(), {}]
         
 def profile(user):
     if str(user.id) in saves:
@@ -38,6 +38,15 @@ def profile(user):
         saves[str(user.id)] = new_profile(user)
         save()
         return saves[str(user.id)]
+    
+def get_enemy(user_id):
+    if user_id in enemies:
+        return enemies[user_id]
+    else:
+        return None
+
+def set_enemy(user_id, enemy):
+    enemies[user_id] = enemy
 
 def help_str(s):
     if s in help_words:
@@ -242,7 +251,7 @@ async def on_message(message):
             fight_ = combat["effects"]["combat"] > 0
             if fight_:
                 sav = True
-                enemy = combat["effects"]["enemy"]
+                enemy = get_enemy(str(message.author.id))
                 you = data.You(combat)
                 abilities = combat["abilities"]
                 m = " ".join(m)
@@ -353,6 +362,23 @@ async def on_message(message):
 
             if command == "emoji":
                 s = emoji(m[1])
+            
+            if command == "combatdisp":
+                s = str(combat)
+            
+            if command == "combatgive":
+                sav = True
+                if m[1][3:-1] in saves:
+                    m[1] = m[1][3:-1]
+                    thing = " ".join(m[3:])
+                    if thing in saves[m[1]][12]:
+                        saves[m[1]][12][thing] += int(m[2])
+                        s = m[2] + " " + bold(thing) + " given!"
+                    else:
+                        saves[m[1]][12][thing] = int(m[2])
+                        s = m[2] + " " + bold(thing) + " given!"
+                else:
+                    s = "Who?"
 
         ### reset
 
@@ -738,11 +764,12 @@ async def on_message(message):
                     s = ""
                     for j in data.abilities[i]["hits"]:
                         h = data.hits[j[0]]
-                        s += str(j[1]) + "% chance to do: "
-                        for i in h.keys():
-                            s += str(j[2] * h[i] * 100) + "% " + i + " "
+                        s += str(j[1]) + "% chance to do "
+                        for k in h.keys():
+                            s += str(j[2] * h[k] * 100) + "% " + k + " "
                         s += "\n"
                     fields.append([i, s, False])
+                s = ""
             else:
                 s = "Unlock combat to use this function!"
 
@@ -819,8 +846,9 @@ async def on_message(message):
                 else:
                     combat["enemies"][enemy.name] = 1
                 effects["combat"] = True
-                effects["enemy"] = enemy
-                effects[""]
+                set_enemy(str(message.author.id), enemy)
+                effects["poison"] = 0
+                effects["stunned"] = 0
                 disp_fight = True
                 s = "NOT DONE YET!"
             else:
@@ -1049,6 +1077,7 @@ async def on_message(message):
 
         if command in ["craft", "cr", "break", "br", "trade", "tr", "buy", "bu", "make", "mk"]:
             inside = False
+            sav = True
             if command == "make" or command == "mk":
                 try:
                     num = int(m[1])
@@ -1110,8 +1139,10 @@ async def on_message(message):
                 else:
                     can_make = True
                     if len(c) == 3:
+                        print(m + "|")
                         if m == "craft equipment bag":
-                            combat = data.init_combat()
+                            saves[str(message.author.id)][12] = data.init_combat()
+                            print("hi")
                         for i in c[2]:
                             if i in inv:
                                 if inv[i] < c[2][i]:
@@ -1203,12 +1234,28 @@ async def on_message(message):
 
     if disp_fight:
         s = ""
-        you = data.You()
+        you = data.You(combat)
         enemy = enemies[str(message.author.id)]
         is_embed = True
-        embed_title = "Fight between " + name + " and " + enemy.name
-        embed_desc = "Round " + enemy.round
+        embed_title = "Fight between " + italic(name) + " and " + italic(enemy.name)
+        embed_desc = "Round " + str(enemy.round)
+        y = emoji("health") + " health: " + str(you.effects["health"]) + "/" + str(you.stats["health"]) + " (" + str(round(you.effects["health"] / you.stats["health"] * 10000) / 100) + "%)\n"
+        stats = ["attack", "defense", "poison", "abilities"]
+        for s in stats:
+            stat = ""
+            if s in you.effects:
+                stat = str(you.effects[s])
+            elif s in you.stats:
+                if s in ["abilities"]:
+                    for i in you.stats[s]:
+                        stat += i + ", "
+                    stat = stat[:-2]
+                else:
+                    stat = str(you.stats[s])
+            y += emoji(s) + " " + s + ": " + stat + "\n"
+        e = "Hi!"
         fields = [["You", y, True], ["Enemy", e, True]]
+        s = ""
 
     # send
     if s:

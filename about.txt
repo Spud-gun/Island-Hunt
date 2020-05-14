@@ -1,0 +1,17 @@
+### This is about the bot ###
+
+___What is this game for?___
+
+The aim of Island Hunt is to explore as much of the island as possible. Earn echievement points (XP) to progress to different levels. Unlock achevements to get cool titles for your profile! 
+Get to new parts of the island and explore, and of course, have fun!
+
+__For starters:__
+Don't know how to start? No worries! Just type .tutorial and follow the nice tutorial that is planned  for you! This tutorial includes learning the basic commands such as .look, .walk, and .hunt.
+
+__Help__
+.help [command/item] gives you a detailed explaination of every command in the game. This way, you can never be lost of what to do.
+Collect, trade, and craft different materials to build equipment. Equipment helps you to fight stronger enemies during fight! 
+
+__Progress__
+As you progress in levels, you unlock different areas in the map!
+

@@ -8,52 +8,51 @@ __List of commands:__ (prepend a `.`)
 
 For more info type `.help [command/item]`
 
-```md
+A `X` instead of a `-` means that the command is in progress of making.
+
 ##### Information #####
-- help (hl)
-- versions (version, ver, v)
-- tutorial (tut)
-- shop (sh)
-- recipes (r)
-- achievements (ac, a)
-- compass (cp)
+- `help (hl)`, `versions (version, ver, v)`
+- `tutorial (tut)`
+- `shop (sh)`
+- `recipes (r)`
+- `achievements (ac, a)`
+- `compass (cp)`
 
 ##### Stats #####
-- profile (p)
-- cooldown (cd)
-- ready (rd)
-- inventory (inv, i)
-- place (pl)
-- map (mp)
-- loot
+- `profile (p)`
+- `cooldown (cd)`
+- `ready (rd)`
+- `inventory (inv, i)`
+- `place (pl)`
+- `map (mp)`
+- `loot`
 
 ##### Actions #####
-- look (l)
-- walk (w)
-- hunt (hu)
-- move (m)
-- sleep (sl)
-- title
-X pickup (take, pk, tk)
+- `look (l)`
+- `walk (w)`
+- `hunt (hu)`
+- `move (m)`
+- `sleep (sl)`
+- `title`
+X `pickup (take, pk, tk)`
 
 ##### Rewards #####
-- daily
-- weekly
+- `daily`
+- `weekly`
 
 ##### Crafting #####
-- make (mk)
-- craft (cr)
-- break (br)
-- trade (tr)
-- sell (sl)
-- buy (bu)
+- `make (mk)`
+- `craft (cr)`
+- `break (br)`
+- `trade (tr)`
+- `sell (sl)`
+- `buy (bu)`
 
 ##### Storyline #####
-X note
+X `note`
 
 ##### Contact #####
-- suggest/bug/change/add/request (similar)
-X privatemessage (pm)
-```
+- `suggest/bug/change/add/request (similar)`
+X `privatemessage (pm)`
 
 Based off the original Island Hunt with a slightly different storyline.

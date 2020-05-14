@@ -31,16 +31,16 @@ Use this command to craft other items using smaller items.
 This command is for exchanging items with the same value for each other.
 
 ### shop
-NOT DONE YET
+Coming soon!
 
 ### fight
-NOT DONE YET
+Coming soon!
 
 ### heal
 The command `.heal` allows you to heal up to 20% of your max health!
 
 ### pickup/take
-NOT DONE YET
+Coming soon!
 
 ### boxes/box
 Boxes have a random chance of falling from the sky,
@@ -65,7 +65,7 @@ If you are on a bed, sleep gives a bit more XP! (around 250 XP more)
 ### coins/coin
 Coins can be obtained by selling items using the sell command.
 You also earn coins when you collect your daily and weekly rewards, or by sleeping.
-Use coins in the shop using the buy command! (NOT DONE YET)
+Use coins in the shop using the buy command! (Coming soon!)
 
 ### sand
 Sand is the basic resource in this game. Things could be traded to sand.
@@ -135,14 +135,16 @@ Type `.loot beach very rare box` to see a list of very rare box drops and their 
 In `.fight`?
 
 ### baby ant
+Coming soon!
 
 ### ant
+Coming soon!
 
 ### achievement/achievements/ach/ac
 Use this command `.ac` or `.achievement` to see a list of achievements for you to aim for! Achievements can help you to unlock titles.
 
 ### title
-Choose your title with `.title (number)` for it to appear in your profile! Check `.ac` for a list of titles.
+Choose your title with `.title (number)` for it to appear in your profile! Check `.ac` (achevements) for a list of titles.
 
 ### daily
 This reward gives a large amount of coins and XP.

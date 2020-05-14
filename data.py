@@ -1,4 +1,4 @@
-import random
+import random, os
 
 types = [str, str, int, int, eval, eval, eval, int, eval, eval, eval, eval, eval]
 """ name[0], status[1], xp[2], level[3], cooldowns[4], items[5], position[6] ([x,y,z]), world#[7], unlocks[8], world[9], achievements[10], map[11], combat[12] """
@@ -33,10 +33,14 @@ items = {
     "uncommon box": [0, "boxes", 500],
     "rare box": [0, "boxes", 1500],
     "very rare box": [0, "boxes", 5000],
+    "leek": [0, "leeks"],
+    "here": [0, "leeks"],
     "note": [0, "storyline", 0],
     "xp": [0, "XP", 1],
     "level": [0, "Level", 1],
-    "cow": [0,"pending"]
+    "cow": [0,"enemies"],
+    "ant": [0, "enemies"],
+    "baby ant": [0, "enemies"],
 }
 
 crafts = {
@@ -476,7 +480,7 @@ notes = {
 
 island_picture = "https://i.ibb.co/8m8fxsm/island.png"
 
-server_ids = [705736619457642567, 705737067732140034, 706097681977835582]
+server_ids = [705736619457642567, 705737067732140034, 706097681977835582, 708913496519213097]
 
 emojis = {}
 
@@ -485,6 +489,7 @@ emojis = {}
 class Enemy:
     def __init__(self, name, **kwargs):
         self.name = name
+        self.round = 1
         self.stats = {}
         self.stats = enemies[name]
         self.abilities = enemies[name]["abilities"]
@@ -523,6 +528,10 @@ class Enemy:
         return self.effects["poison"]
     def effect(self, eff):
         return self.effects[eff]
+    
+    def inc_round(self):
+        self.round += 1
+
     def die(self):
         if self.health() <= 0:
             self.effects["dead"] = 1
@@ -551,7 +560,7 @@ class Enemy:
     
     def heal(self, ability):
         if ability:
-            a = abilities[ability]
+            a = abilities[ability]["hits"]
             for i in a:
                 if random.randint(1, 100) <= i[1]:
                     heal_name = i[0]
@@ -568,7 +577,7 @@ class Enemy:
     
     def hit(self, ability, opponent):
         if ability:
-            a = abilities[ability]
+            a = abilities[ability]["hits"]
             for i in a:
                 if random.randint(1, 100) <= i[1]:
                     hit_name = i[0]
@@ -577,7 +586,7 @@ class Enemy:
             h = hits[hit_name]
             for i in h:
                 if "damage" in h:
-                    damage = h[i] * hit_mult * opponent.damage()
+                    damage = h[i] * hit_mult * opponent.attack()
                     if "lightning" not in h:
                         damage -= self.stats["defense"]
                     if damage < 0:
@@ -588,7 +597,7 @@ class Enemy:
                         self.effects["health"] -= damage
     
     def turn(self, ability, opponent):
-        self.hit(self, ability, opponent)
+        self.hit(ability, opponent)
         self.do_poison()
         
         if self.die():
@@ -614,6 +623,7 @@ class You(Enemy):
 
     def __init__(self, combat):
         self.stats = combat
+        self.round = 1
         self.abilities = combat["abilities"]
         self.effects = {
             "health": self.stats["health"],
@@ -629,7 +639,7 @@ class You(Enemy):
     # more overriding
     
     def turn(self, ability, opponent):
-        self.hit(self, ability, opponent)
+        self.hit(ability, opponent)
         if self.die():
             return "lose"
         else:
@@ -689,15 +699,15 @@ def new_combat():
     return {}
 
 def init_combat():
-    return {
+    combat = {
         "init": 1,
         "attack": 0,
-        "defence": 0,
+        "defense": 0,
         "health": 20,
         "abilities": {"hit": 1},
         "kills": 0,
         "deaths": 0,
-        "animals": {},
+        "enemies": {},
         "effects": {
             "health": 20,
             "poison": 0,
@@ -706,6 +716,7 @@ def init_combat():
             "dead": 0,
         },
     }
+    return combat
 
 def get_emojis(servers):
     global emojis

@@ -112,6 +112,7 @@ If you don't have one yet, type `.tutorial`!
 ### equipment
 
 ### equipment bag
+Craft this to unlock combat!
 
 ### 
 
